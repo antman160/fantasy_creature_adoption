@@ -1,0 +1,6 @@
+@fantasy_creature_adoption.Server_HostAddress = http://localhost:5124
+
+GET {{fantasy_creature_adoption.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
