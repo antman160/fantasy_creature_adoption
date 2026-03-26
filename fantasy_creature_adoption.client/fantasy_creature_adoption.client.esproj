@@ -10,7 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\api\" />
-    <Folder Include="src\components\" />
-    <Folder Include="src\pages\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,19 @@
-@fantasy_creature_adoption.Server_HostAddress = http://localhost:5124
+@baseUrl = http://localhost:5124
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMGZkNmVjZC01ZWUzLTRiN2EtOGYxOS00ZGZhYzM2YjdmZDciLCJlbWFpbCI6Imd1ZXN0QGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiZ3Vlc3RAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiMGZkNmVjZC01ZWUzLTRiN2EtOGYxOS00ZGZhYzM2YjdmZDciLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3Vlc3QiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJndWVzdEBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzc0NTc1Mzc0LCJpc3MiOiJGYW50YXN5Q3JlYXR1cmVBZG9wdGlvbkFQSSIsImF1ZCI6IkZhbnRhc3lDcmVhdHVyZUFkb3B0aW9uQ2xpZW50In0.mkpjI1o8Fllc74J6D6OV2yKhuCkKsxog0vwmFziR5Kk
 
-GET {{fantasy_creature_adoption.Server_HostAddress}}/weatherforecast/
+### Get all creatures
+GET {{baseUrl}}/api/creatures
 Accept: application/json
 
 ###
+
+### Adopt creature with ID 1
+POST {{baseUrl}}/api/adoptions/1
+Authorization: Bearer {{token}}
+
+###
+
+### View my adoptions
+GET {{baseUrl}}/api/adoptions/my
+Authorization: Bearer {{token}}
+Accept: application/json

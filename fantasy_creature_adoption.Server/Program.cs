@@ -54,8 +54,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowClient", policy =>
     {
-        policy.WithOrigins("https://localhost:5173", "http://localhost:5173")
-              .AllowAnyHeader()
+        policy.WithOrigins(
+                 "http://localhost:5173",
+                 "https://localhost:5173",
+                 "http://localhost:5175",
+                 "https://localhost:5175"
+             )
+               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
@@ -72,7 +77,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("AllowClient");
 app.UseAuthentication();
 app.UseAuthorization();
