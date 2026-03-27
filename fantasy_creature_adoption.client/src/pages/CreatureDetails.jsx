@@ -5,6 +5,7 @@ const API_BASE = 'http://localhost:5124'
 
 function CreatureDetails() {
     const { id } = useParams()
+
     const [creature, setCreature] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -52,8 +53,8 @@ function CreatureDetails() {
             const response = await fetch(`${API_BASE}/api/adoptions/${id}`, {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             })
 
             const data = await response.json()
@@ -72,13 +73,29 @@ function CreatureDetails() {
         }
     }
 
-    if (loading) return <p style={styles.message}>Loading creature...</p>
-    if (error) return <p style={styles.error}>{error}</p>
-    if (!creature) return <p style={styles.message}>No creature found.</p>
+    if (loading) {
+        return <p style={styles.message}>Loading creature...</p>
+    }
+
+    if (error) {
+        return <p style={styles.error}>{error}</p>
+    }
+
+    if (!creature) {
+        return <p style={styles.message}>No creature found.</p>
+    }
 
     return (
         <div style={styles.container}>
-            <Link to="/creatures" style={styles.backLink}>Back to Browse</Link>
+            <Link to="/creatures" style={styles.backLink}>
+                Back to Browse
+            </Link>
+
+            <img
+                src={creature.imageUrl}
+                alt={creature.name}
+                style={styles.image}
+            />
 
             <h1>{creature.name}</h1>
             <p><strong>Species:</strong> {creature.species}</p>
@@ -89,7 +106,11 @@ function CreatureDetails() {
             <p><strong>Status:</strong> {creature.isAdopted ? 'Adopted' : 'Available'}</p>
 
             {!creature.isAdopted && (
-                <button onClick={handleAdopt} style={styles.button} disabled={adopting}>
+                <button
+                    onClick={handleAdopt}
+                    style={styles.button}
+                    disabled={adopting}
+                >
                     {adopting ? 'Adopting...' : 'Adopt Creature'}
                 </button>
             )}
@@ -111,6 +132,15 @@ const styles = {
         marginBottom: '1rem',
         textDecoration: 'none',
         color: '#2c2c54',
+    },
+    image: {
+        width: '100%',
+        maxWidth: '500px',
+        height: '300px',
+        objectFit: 'cover',
+        borderRadius: '10px',
+        marginBottom: '1rem',
+        display: 'block',
     },
     button: {
         marginTop: '1rem',

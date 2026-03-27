@@ -14,7 +14,6 @@ function BrowseCreatures() {
     const [diet, setDiet] = useState('')
     const [availableOnly, setAvailableOnly] = useState(false)
 
-    // Load all creatures once when the page first opens
     useEffect(() => {
         const loadInitialCreatures = async () => {
             try {
@@ -85,7 +84,11 @@ function BrowseCreatures() {
                     style={styles.input}
                 />
 
-                <select value={species} onChange={(e) => setSpecies(e.target.value)} style={styles.input}>
+                <select
+                    value={species}
+                    onChange={(e) => setSpecies(e.target.value)}
+                    style={styles.input}
+                >
                     <option value="">All Species</option>
                     <option value="Dragon">Dragon</option>
                     <option value="Unicorn">Unicorn</option>
@@ -109,7 +112,11 @@ function BrowseCreatures() {
                     <option value="Aggressive">Aggressive</option>
                 </select>
 
-                <select value={diet} onChange={(e) => setDiet(e.target.value)} style={styles.input}>
+                <select
+                    value={diet}
+                    onChange={(e) => setDiet(e.target.value)}
+                    style={styles.input}
+                >
                     <option value="">All Diets</option>
                     <option value="Omnivore">Omnivore</option>
                     <option value="Carnivore">Carnivore</option>
@@ -125,7 +132,9 @@ function BrowseCreatures() {
                     Available only
                 </label>
 
-                <button type="submit" style={styles.button}>Apply Filters</button>
+                <button type="submit" style={styles.button}>
+                    Apply Filters
+                </button>
             </form>
 
             {loading && <p>Loading creatures...</p>}
@@ -138,12 +147,20 @@ function BrowseCreatures() {
             <div style={styles.grid}>
                 {creatures.map((creature) => (
                     <div key={creature.id} style={styles.card}>
+                        <img
+                            src={creature.imageUrl}
+                            alt={creature.name}
+                            style={styles.image}
+                        />
+
                         <h2>{creature.name}</h2>
                         <p><strong>Species:</strong> {creature.species}</p>
                         <p><strong>Temperament:</strong> {creature.temperament}</p>
                         <p><strong>Diet:</strong> {creature.diet}</p>
                         <p><strong>Habitat:</strong> {creature.habitat}</p>
-                        <p><strong>Status:</strong> {creature.isAdopted ? 'Adopted' : 'Available'}</p>
+                        <p>
+                            <strong>Status:</strong> {creature.isAdopted ? 'Adopted' : 'Available'}
+                        </p>
 
                         <Link to={`/creatures/${creature.id}`} style={styles.detailsLink}>
                             View Details
@@ -196,6 +213,13 @@ const styles = {
         borderRadius: '10px',
         padding: '1rem',
         backgroundColor: '#fff',
+    },
+    image: {
+        width: '100%',
+        height: '180px',
+        objectFit: 'cover',
+        borderRadius: '8px',
+        marginBottom: '0.75rem',
     },
     detailsLink: {
         display: 'inline-block',
