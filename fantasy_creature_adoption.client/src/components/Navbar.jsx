@@ -4,11 +4,14 @@ function Navbar() {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const userFullName = localStorage.getItem('userFullName')
+    const roles = JSON.parse(localStorage.getItem('roles') || '[]')
+    const isAdmin = roles.includes('Admin')
 
     const handleLogout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('userEmail')
         localStorage.removeItem('userFullName')
+        localStorage.removeItem('roles')
         navigate('/login')
     }
 
@@ -26,13 +29,16 @@ function Navbar() {
                         <Link to="/register" style={styles.link}>Register</Link>
                     </>
                 ) : (
-                    <>
-                        <Link to="/my-adoptions" style={styles.link}>My Adoptions</Link>
-                        <span style={styles.userText}>{userFullName || 'Logged in'}</span>
-                        <button onClick={handleLogout} style={styles.logoutButton}>
-                            Logout
-                        </button>
-                    </>
+                        <>
+                            <Link to="/my-adoptions" style={styles.link}>My Adoptions</Link>
+                            {isAdmin && (
+                                <Link to="/admin/creatures" style={styles.link}>Admin</Link>
+                            )}
+                            <span style={styles.userText}>{userFullName || 'Logged in'}</span>
+                            <button onClick={handleLogout} style={styles.logoutButton}>
+                                Logout
+                            </button>
+                        </>
                 )}
             </div>
         </nav>

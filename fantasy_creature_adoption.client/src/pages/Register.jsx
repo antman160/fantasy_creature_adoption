@@ -44,6 +44,7 @@ function Register() {
             localStorage.setItem('token', data.token)
             localStorage.setItem('userEmail', data.email)
             localStorage.setItem('userFullName', data.fullName)
+            localStorage.setItem('roles', JSON.stringify(data.roles || []))
 
             navigate('/creatures')
         } catch (err) {
