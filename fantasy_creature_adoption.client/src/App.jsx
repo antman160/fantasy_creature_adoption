@@ -6,7 +6,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import MyAdoptions from './pages/MyAdoptions'
 import AdminCreatures from './pages/AdminCreatures'
+import MatchService from './pages/MatchService'
 import Navbar from './components/Navbar'
+
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/my-adoptions" element={<MyAdoptions />} />
                 <Route path="/admin/creatures" element={<AdminCreatures />} />
+                <Route path="/match" element={<MatchService />} />
             </Routes>
         </>
     )

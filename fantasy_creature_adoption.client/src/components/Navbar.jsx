@@ -30,6 +30,7 @@ function Navbar() {
                     </>
                 ) : (
                         <>
+                            <Link to="/match" style={styles.link}>Match Service</Link>
                             <Link to="/my-adoptions" style={styles.link}>My Adoptions</Link>
                             {isAdmin && (
                                 <Link to="/admin/creatures" style={styles.link}>Admin</Link>
