@@ -137,7 +137,7 @@ const styles = {
         width: '100%',
         maxWidth: '500px',
         height: '300px',
-        objectFit: 'cover',
+        objectFit: 'contain',
         borderRadius: '10px',
         marginBottom: '1rem',
         display: 'block',
